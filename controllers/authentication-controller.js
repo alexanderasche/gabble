@@ -24,7 +24,7 @@ router.post('/login', async (request, response) => {
   var username = request.body.username;
   var password = request.body.password;
   validationErrors = [];
-  var existingUser = await models.user.findOne({
+  var existingUser = await models.users.findOne({
     where: {
       username: username,
       password: password
@@ -58,20 +58,22 @@ router.post('/register', async (request, response) => {
   request.checkBody('display_name', 'Enter a display name.').notEmpty();
   request.checkBody('password', 'Enter a password.').notEmpty();
   request.checkBody('confirm_password', 'Passwords do not match.').equals(request.body.password);
-  validationErrors = request.validationErrors() || [];
-  var existingUser = await models.user.findOne({
+  validationErrors = request.validationErrors();
+  var existingUser = await models.users.findOne({
     where: {
       username: username,
     }
   });
+  console.log(existingUser, validationErrors);
   if (existingUser || validationErrors) {
     if(existingUser) {
+      validationErrors = [];
       validationErrors.unshift({"msg": "That username is taken."})
     }
     response.render('register', {errors: validationErrors});
   }
   else {
-    await models.user.create({
+    await models.users.create({
       username: request.body.username,
       displayname: request.body.display_name,
       password: request.body.password

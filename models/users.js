@@ -1,14 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var user = sequelize.define('user', {
+  var users = sequelize.define('users', {
     username: { type: DataTypes.STRING, allowNull: false },
     displayname: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false }
   });
-  user.associate = function(models) {
-    user.hasMany(models.message);
-    // user.hasMany(models.like);
+  users.associate = function(models) {
+    users.hasMany(models.messages);
+    users.hasMany(models.likes);
   }
 
-  return user;
+  return users;
 };
