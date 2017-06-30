@@ -3,8 +3,8 @@ const router = express.Router();
 const models = require('../models');
 
 router.get('/', function(request, response) {
-  if (typeof(user) != 'undefined') {
-    response.send("Logged In");
+  if (request.session.isAuthenticated = true) {
+    response.redirect('/feed');
   }
   else {
     response.redirect('/login');
@@ -12,7 +12,7 @@ router.get('/', function(request, response) {
 });
 
 router.get('/login', function(request, response) {
-  if (typeof(user) != 'undefined') {
+  if (request.session.isAuthenticated = true) {
     response.redirect('/');
   }
   else {
@@ -35,14 +35,14 @@ router.post('/login', async function(request, response) {
     response.render('login', {errors: validationErrors});
   }
   else {
-    response.send("Validated");
-    // request.session.isAuthenticated = true;
-    // response.redirect('/');
+    request.session.isAuthenticated = true;
+    request.session.username = request.body.username;
+    response.redirect('/');
   }
 })
 
 router.get('/register', function(request, response) {
-  if (typeof(user) != 'undefined') {
+  if (request.session.isAuthenticated = true) {
     response.redirect('/');
   }
   else {
@@ -74,6 +74,8 @@ router.post('/register', async function(request, response) {
       displayname: request.body.display_name,
       password: request.body.password
     });
+    request.session.isAuthenticated = true;
+    request.session.username = request.body.username;
     response.redirect('/');
   }
 });
