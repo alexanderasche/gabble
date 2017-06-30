@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Gabble | Register</title>
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
+  <script src="https://use.fontawesome.com/8feb4bfacc.js"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <div id="logo">
+        <a href="/">Gabble</a>
+      </div>
+      <nav>
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+        <a href="/gab/new"><button class="gab"><i class="fa fa-bullhorn" aria-hidden="true"></i></button></a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="inner-wrapper">
+      <div class="inner-wrapper">
+        <h1 class="welcome"><span>G</span> Register for Gabble</h1>
+        {{#if errors}}
+          <ul class="errors">
+            <li><i class="fa fa-times-circle" aria-hidden="true"></i>
+              {{errors.0.msg}}
+            </li>
+          </ul>
+        {{/if}}
+        <form method="POST" action="/register">
+          <input type="text" name="username" placeholder="Username*">
+          <input type="text" name="display_name" placeholder="Display Name*">
+          <input type="password" name="password" placeholder="Password*">
+          <input type="password" name="confirm_password" placeholder="Confirm Password*">
+          <button type="submit">Register</button>
+        </form>
+        <p class="form">Already Registerd? <a href="/login">Log In</a></p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
