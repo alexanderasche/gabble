@@ -3,7 +3,7 @@ const router = express.Router();
 const models = require('../models');
 
 router.get('/gab/new', function(request, response) {
-  if (request.session.isAuthenticated = true) {
+  if (request.session.isAuthenticated === true) {
     response.render('gab-new');
   }
   else {

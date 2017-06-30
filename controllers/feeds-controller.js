@@ -3,7 +3,7 @@ const router = express.Router();
 const models = require('../models');
 
 router.get('/', function(request, response) {
-  if (request.session.isAuthenticated = true) {
+  if (request.session.isAuthenticated === true) {
     response.redirect('/feed');
   }
   else {
@@ -13,8 +13,8 @@ router.get('/', function(request, response) {
 
 
 router.get('/feed', function(request, response) {
-  if (request.session.isAuthenticated = true) {
-    response.render('feed');
+  if (request.session.isAuthenticated === true) {
+    response.render('feed', {username: request.session.username});
   }
   else {
     response.redirect('/login');

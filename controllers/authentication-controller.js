@@ -3,7 +3,7 @@ const router = express.Router();
 const models = require('../models');
 
 router.get('/', function(request, response) {
-  if (request.session.isAuthenticated = true) {
+  if (request.session.isAuthenticated === true) {
     response.redirect('/feed');
   }
   else {
@@ -12,7 +12,7 @@ router.get('/', function(request, response) {
 });
 
 router.get('/login', function(request, response) {
-  if (request.session.isAuthenticated = true) {
+  if (request.session.isAuthenticated === true) {
     response.redirect('/');
   }
   else {
@@ -25,13 +25,14 @@ router.post('/login', async function(request, response) {
   var usernameArray = [];
   var passwordArray = [];
   var validationErrors = [];
-  request.checkBody('username', 'Enter a username.').notEmpty();
-  request.checkBody('password', 'Enter a password.').notEmpty();
-  validationErrors = request.validationErrors();
-  if (usernameArray.indexOf(!request.body.username) && usernameArray.indexOf(request.body.username) != passwordArray.indexOf(request.body.password)) {
-    validationErrors.unshift({"msg": "Invalid username and password."}); 
+  for (i = 0; i < usernamesPasswords.length; i++) {
+    usernameArray.push(usernamesPasswords[i].username.toLowerCase());
+    passwordArray.push(usernamesPasswords[i].password);
   }
-  if (validationErrors) {
+  var userIndex = usernameArray.indexOf(request.body.username);
+  var passwordIndex = passwordArray.indexOf(request.body.password);
+  if (!usernameArray.includes(request.body.username) || (userIndex != passwordIndex)) {
+    validationErrors.unshift({"msg": "Invalid username and password."});
     response.render('login', {errors: validationErrors});
   }
   else {
@@ -39,10 +40,10 @@ router.post('/login', async function(request, response) {
     request.session.username = request.body.username;
     response.redirect('/');
   }
-})
+});
 
 router.get('/register', function(request, response) {
-  if (request.session.isAuthenticated = true) {
+  if (request.session.isAuthenticated === true) {
     response.redirect('/');
   }
   else {
@@ -78,6 +79,11 @@ router.post('/register', async function(request, response) {
     request.session.username = request.body.username;
     response.redirect('/');
   }
+});
+
+router.get('/logout', function(request, response) {
+  request.session.isAuthenticated = false;
+  response.redirect('/');
 });
 
 module.exports = router;

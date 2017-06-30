@@ -20,8 +20,15 @@ const gabsController = require('./controllers/gabs-controller');
 application.use(session({
     secret: 'gabble',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: true
 }));
+
+application.use(function(request, response, next) {
+    if (request.session.isAuthenticated === undefined) {
+        request.session.isAuthenticated = false;
+    }
+    next();
+});
 
 application.use(express.static('public'));
 application.use(bodyParser.urlencoded({extended: true}));

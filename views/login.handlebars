@@ -26,6 +26,13 @@
     <div class="inner-wrapper">
       <div class="inner-wrapper">
         <h1 class="welcome"><span>G</span> Sign in to Gabble</h1>
+        {{#if errors}}
+          <ul class="errors">
+            <li><i class="fa fa-times-circle" aria-hidden="true"></i>
+              {{errors.0.msg}}
+            </li>
+          </ul>
+        {{/if}}
         <form method="POST" action="/login">
           <input type="text" name="username" placeholder="Username*">
           <input type="password" name="password" placeholder="Password*">

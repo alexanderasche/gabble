@@ -95,7 +95,7 @@ button.gab:hover {
 
 main {
   background: #efefef;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 60px);
   padding: 40px 0;
 }
 
