@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models');
 
-router.get('/', function(request, response) {
+router.get('/', (request, response) => {
   if (request.session.isAuthenticated === true) {
     response.redirect('/feed');
   }
@@ -12,7 +12,7 @@ router.get('/', function(request, response) {
 });
 
 
-router.get('/feed', function(request, response) {
+router.get('/feed', (request, response) => {
   if (request.session.isAuthenticated === true) {
     response.render('feed', {username: request.session.username});
   }

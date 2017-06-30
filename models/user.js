@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   user.associate = function(models) {
     user.hasMany(models.message);
+    // user.hasMany(models.like);
   }
 
   return user;

@@ -11,6 +11,22 @@ module.exports = {
       active: {
         type: Sequelize.BOOLEAN
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        reference: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      messageId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'messages',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
