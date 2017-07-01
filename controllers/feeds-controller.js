@@ -4,7 +4,7 @@ const models = require('../models');
 
 router.get('/', (request, response) => {
   if (request.session.isAuthenticated === true) {
-    response.redirect('/feed');
+    response.render('feed');
   }
   else {
     response.redirect('/login');
@@ -12,13 +12,16 @@ router.get('/', (request, response) => {
 });
 
 
-router.get('/feed', (request, response) => {
-  if (request.session.isAuthenticated === true) {
-    response.render('feed', {username: request.session.username});
-  }
-  else {
-    response.redirect('/login');
-  }
+router.get('/feed', async (request, response) => {
+  // if (request.session.isAuthenticated === true) {
+    var messages = await models.messages.findAll(
+      { include: [models.users] }
+    );
+    response.render('feed', {username: request.session.username, messages: messages});
+  // }
+  // else {
+  //   response.redirect('/login');
+  // }
 });
 
 module.exports = router;

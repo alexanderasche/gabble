@@ -25,10 +25,7 @@ router.post('/login', async (request, response) => {
   var password = request.body.password;
   validationErrors = [];
   var existingUser = await models.users.findOne({
-    where: {
-      username: username,
-      password: password
-    }
+    where: { username: username, password: password }
   });
   if (!existingUser) {
     validationErrors.push({"msg": "Invalid username and password."}); 
@@ -60,9 +57,7 @@ router.post('/register', async (request, response) => {
   request.checkBody('confirm_password', 'Passwords do not match.').equals(request.body.password);
   validationErrors = request.validationErrors();
   var existingUser = await models.users.findOne({
-    where: {
-      username: username,
-    }
+    where: { username: username }
   });
   console.log(existingUser, validationErrors);
   if (existingUser || validationErrors) {

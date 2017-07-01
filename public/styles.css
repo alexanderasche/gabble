@@ -20,6 +20,11 @@ a:hover {
   opacity: .5;
 }
 
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Raleway', sans-serif;
@@ -126,7 +131,6 @@ main {
 }
 
 form, .form, .feed-block {
-  padding: 15px;
   width: 100%;
   background: #FFF;
   border: 1px solid #D5D5D5;
@@ -188,15 +192,15 @@ ul.errors {
   color: #E23030;
   background: #FBEBEB;
   font-size: .9em;
-  padding: 10px 15px 12px 45px;
+  padding: 10px 15px 10px 50px;
   margin-bottom: 15px;
 }
 
 ul.errors i {
   color: #E93434;
   position: absolute;
-  font-size: 22px;
-  top: 9px;
+  font-size: 24px;
+  top: 11px;
   left: 15px;
 }
 
@@ -209,4 +213,81 @@ ul.errors i {
 .feed-container .feed-block {
   flex-basis: calc(50% - 10px);
   margin-bottom: 20px;
+}
+
+.gab-header {
+  display: flex;
+  background: #ECF4F6;
+  border-bottom: 1px solid #DAEAEE;
+  justify-content: space-between;
+  padding: 5px 20px 4px;
+}
+
+.gab-header .right {
+  display: flex;
+}
+
+.gab-header .avatar {
+  width: 30px;
+  margin-right: 8px;
+  border-radius: 50%;
+  border: 1px solid #d5d5d5;
+  vertical-align: middle;
+  position: relative;
+  bottom: 2px;
+}
+
+.gab-header h3 {
+  color: #3B7C8B;
+  display: inline-block;
+  line-height: 30px;
+}
+
+.gab-header i {
+  font-size: 16px;
+}
+
+.gab-header form:first-of-type i {
+  margin-right: 10px;
+}
+
+.gab-header form:last-of-type i {
+  font-size: 17px;
+  position: relative;
+  bottom: 1px;
+}
+
+.gab-controls {
+  border: none;
+  background: transparent;
+}
+
+.gab-controls button {
+  background: none;
+  padding: 0;
+}
+
+.gab-controls button:hover {
+  background: none;
+}
+
+.gab-controls .like {
+  color: #FF5A5A;
+}
+
+.gab-controls .like:hover {
+  color: #EAAEB0;
+}
+
+.gab-controls .comment {
+  color: #3B7C8B;
+}
+
+.gab-controls .comment:hover {
+  color: #8CB3BD;
+}
+
+.gab-message {
+  padding: 10px 20px 20px;
+  font-size: .9em;
 }

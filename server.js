@@ -5,6 +5,7 @@ const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 const session = require('express-session');
+const path = require('path');
 
 const application = express();
 const port = 3000;

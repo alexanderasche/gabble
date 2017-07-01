@@ -18,19 +18,52 @@
       <nav>
         <a href="/feed">{{username}}</a>
         <a href="/logout">Logout</a>
-        <a href="/gab/new"><button class="gab"><i class="fa fa-bullhorn" aria-hidden="true"></i></button></button></a>
+        <a href="/gab"><button class="gab"><i class="fa fa-bullhorn" aria-hidden="true"></i></button></button></a>
       </nav>
     </div>
   </header>
   <main>
     <div class="wrapper">
+      <h1 class="welcome"><span>G</span> Recent Gabs</h1>
       <div class="feed-container">
         <div class="feed-block">
+          <div class="gab-header">
+            <div class="left">
+              <img class="avatar" src="/images/avatar.png">
+              <h3 class="gab-author">aasche</h3>
+            </div>
+            <div class="right">
+              <form method="POST" class="gab-controls">
+                <button type="submit" class="like"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+              </form>
+              <form method="POST" class="gab-controls">
+                   <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
+              </form>
+            </div>
+          </div>
+          <p class="gab-message">Lorem ipsum dolor sit amet, consectedstur adipisicing elit. Labore nobis incidunt sint illo adipisci mollitia qui repellendus, repudiandae.</p>
+          <p class="gab-date">Posted 8:45pm July 4, 2017</p>
         </div>
-        <div class="feed-block">
-        </div>
-        <div class="feed-block">
-        </div>
+        {{#messages}}
+          <div class="feed-block">
+            <div class="gab-header">
+              <div class="left">
+                <img class="avatar" src="/images/avatar.png">
+                <h3 class="gab-author">{{user.username}}</h3>
+              </div>
+              <div class="right">
+                <form method="POST" class="gab-controls">
+                  <button type="submit" class="like"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                </form>
+                <form method="POST" class="gab-controls">
+                   <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
+                </form>
+              </div>
+            </div>
+            <p class="gab-message">{{content}}</p>
+            <p class="gab-date">{{createdAt}}</p>
+          </div>
+        {{/messages}}
       </div>
     </div>
   </main>
