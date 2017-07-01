@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://use.fontawesome.com/8feb4bfacc.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Gabble | Gab</title>
+</head>
+<body>
+  <header>
+    <div class="wrapper">
+      <div id="logo">
+        <a href="/">Gabble</a>
+      </div>
+      <nav>
+        <a href="/feed">{{username}}</a>
+        <a href="/logout">Logout</a>
+        <a href="/gab"><button class="gab"><i class="fa fa-bullhorn" aria-hidden="true"></i></button></button></a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="inner-wrapper">
+        <h1 class="welcome"><span>G</span> Share a Gab</h1>
+        {{#if errors}}
+          <ul class="errors">
+            <li><i class="fa fa-times-circle" aria-hidden="true"></i>
+              {{errors.0.msg}}
+            </li>
+          </ul>
+        {{/if}}
+        <form method="POST" action="/gab">
+          <textarea name="message" rows="4" placeholder="Where will your next gab take you..."></textarea>
+          <button type="submit">Gabble!</button>
+        </form>
+        <p class="form"><i class="fa fa-hand-o-right" aria-hidden="true" style="margin-right: 8px;"></i>140 Character Max</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

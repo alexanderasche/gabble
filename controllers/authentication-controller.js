@@ -62,8 +62,7 @@ router.post('/register', async (request, response) => {
   console.log(existingUser, validationErrors);
   if (existingUser || validationErrors) {
     if(existingUser) {
-      validationErrors = [];
-      validationErrors.unshift({"msg": "That username is taken."})
+      validationErrors = [{"msg": "That username is taken."}];
     }
     response.render('register', {errors: validationErrors});
   }

@@ -17,6 +17,7 @@ router.get('/feed', async (request, response) => {
     var messages = await models.messages.findAll(
       { include: [models.users] }
     );
+    console.log(messages);
     response.render('feed', {username: request.session.username, messages: messages});
   // }
   // else {

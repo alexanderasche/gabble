@@ -7,7 +7,7 @@
   <script src="https://use.fontawesome.com/8feb4bfacc.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,400i,700,700i" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
-  <title>Gabble | Gab</title>
+  <title>Gabble | Feed</title>
 </head>
 <body>
   <header>
@@ -24,20 +24,28 @@
   </header>
   <main>
     <div class="wrapper">
-      <div class="inner-wrapper">
-        <h1 class="welcome"><span>G</span> Share a Gab</h1>
-        {{#if errors}}
-          <ul class="errors">
-            <li><i class="fa fa-times-circle" aria-hidden="true"></i>
-              {{errors.0.msg}}
-            </li>
-          </ul>
-        {{/if}}
-        <form method="POST" action="/gab">
-          <textarea name="message" rows="4" placeholder="Where will your next gab take you..."></textarea>
-          <button type="submit">Gabble!</button>
-        </form>
-        <p class="form" style="font-family: Helvetica, sans-serif;"><em>140 Character Max</em></p>
+      <h1 class="welcome"><span>G</span> Gab</h1>
+      <div class="feed-container single">
+        {{#messages}}
+          <div class="feed-block">
+            <div class="gab-header">
+              <div class="left">
+                <img class="avatar" src="/images/avatar.png">
+                <h3 class="gab-author">{{user.username}}</h3>
+              </div>
+              <div class="right">
+                <form method="POST" action="/gab/{{id}}/like" class="gab-controls">
+                  <button type="submit" class="like"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
+                </form>
+                <form method="POST" class="gab-controls">
+                   <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
+                </form>
+              </div>
+            </div>
+            <p class="gab-message">{{content}}<br>
+            <p class="gab-date"><i class="fa fa-paper-plane" aria-hidden="true"></i>{{createdAt}}</p>
+          </div>
+        {{/messages}}
       </div>
     </div>
   </main>

@@ -27,16 +27,26 @@ img {
 
 body {
   margin: 0;
-  font-family: 'Raleway', sans-serif;
+  color: #666;
+  font-family: 'Helvetica', sans-serif;
   font-size: 16px;
   line-height: 2;
+}
+
+p {
+  color: #666;
+}
+
+h1, h2, h3, h4, h5, h6 {
   color: #555;
+  font-family: "Raleway", sans-serif;
 }
 
 header {
   background: #FFFFFF;
   border-bottom: 1px solid #E3E3E3;
   padding: 0;
+  font-family: "Raleway", sans-serif;
   font-size: 1em;
   font-weight: 500;
   height: 60px;
@@ -135,6 +145,8 @@ form, .form, .feed-block {
   background: #FFF;
   border: 1px solid #D5D5D5;
   border-radius: 3px;
+  padding: 15px;
+  position: relative;
 }
 
 .form {
@@ -189,7 +201,7 @@ ul.errors {
   list-style: none;
   border: 1px solid #FF5A5A;
   border-radius: 2px;
-  color: #E23030;
+  color: #E64C4C;
   background: #FBEBEB;
   font-size: .9em;
   padding: 10px 15px 10px 50px;
@@ -197,7 +209,7 @@ ul.errors {
 }
 
 ul.errors i {
-  color: #E93434;
+  color: #EC4B4B;
   position: absolute;
   font-size: 24px;
   top: 11px;
@@ -208,11 +220,18 @@ ul.errors i {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
+}
+
+.feed-container.single {
+  align-items: center;
+  justify-content: center;
 }
 
 .feed-container .feed-block {
   flex-basis: calc(50% - 10px);
   margin-bottom: 20px;
+  padding: 0;
 }
 
 .gab-header {
@@ -220,11 +239,15 @@ ul.errors i {
   background: #ECF4F6;
   border-bottom: 1px solid #DAEAEE;
   justify-content: space-between;
-  padding: 5px 20px 4px;
+  padding: 7px 20px 5px;
 }
 
 .gab-header .right {
   display: flex;
+}
+
+.gab-header form {
+  padding: 0;
 }
 
 .gab-header .avatar {
@@ -262,7 +285,12 @@ ul.errors i {
   background: transparent;
 }
 
+.gab-controls a {
+  margin: 0 2px 0 12px;
+}
+
 .gab-controls button {
+  width: 20px;
   background: none;
   padding: 0;
 }
@@ -288,6 +316,34 @@ ul.errors i {
 }
 
 .gab-message {
-  padding: 10px 20px 20px;
+  padding: 10px 20px 80px;
   font-size: .9em;
+}
+
+.gab-message a {
+  float: right;
+  background: #79B3C1;
+  color: #FFF;
+  border-radius: 3px;
+  padding: 0px 10px;
+  font-size: .9em;
+}
+
+.gab-message a i {
+  margin-left: 6px;
+}
+
+.gab-date {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #F8FBFC;
+  border-top: 1px solid #ECF4F6;
+  text-align: right;
+  padding: 5px 20px;
+  font-size: .8em;
+}
+
+.gab-date i {
+  margin-right: 8px;
 }
