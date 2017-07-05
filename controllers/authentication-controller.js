@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models');
 
-router.get('/', (request, response) => {
+router.get('/', async (request, response) => {
   if (request.session.isAuthenticated === true) {
+    var existingUser = await models.users.findOne({
+      attributes: ["id"],
+      where: { username: request.session.username }
+    });
+    request.session.userId = existingUser.id;
     response.redirect('/feed');
   }
   else {
@@ -32,6 +37,10 @@ router.post('/login', async (request, response) => {
     response.render('login', {errors: validationErrors});
   } 
   else {
+    var userId = await models.users.findOne({
+      attributes: ["id"],
+      where: {username: request.body.username}
+    });
     request.session.isAuthenticated = true;
     request.session.username = request.body.username;
     response.redirect('/');
@@ -48,7 +57,7 @@ router.get('/register', (request, response) => {
 });
 
 router.post('/register', async (request, response) => {
-  var username = request.body.username;
+  var username = request.body.username.toLowerCase();
   var password = request.body.password;
   validationErrors = [];
   request.checkBody('username', 'Enter a username.').notEmpty();
@@ -59,7 +68,6 @@ router.post('/register', async (request, response) => {
   var existingUser = await models.users.findOne({
     where: { username: username }
   });
-  console.log(existingUser, validationErrors);
   if (existingUser || validationErrors) {
     if(existingUser) {
       validationErrors = [{"msg": "That username is taken."}];
@@ -67,11 +75,6 @@ router.post('/register', async (request, response) => {
     response.render('register', {errors: validationErrors});
   }
   else {
-    await models.users.create({
-      username: request.body.username,
-      displayname: request.body.display_name,
-      password: request.body.password
-    });
     request.session.isAuthenticated = true;
     request.session.username = request.body.username;
     response.redirect('/');
@@ -79,7 +82,7 @@ router.post('/register', async (request, response) => {
 });
 
 router.get('/logout', (request, response) => {
-  request.session.isAuthenticated = false;
+  request.session.destroy();
   response.redirect('/');
 });
 

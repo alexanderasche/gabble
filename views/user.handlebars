@@ -24,29 +24,31 @@
   </header>
   <main>
     <div class="wrapper">
-      <h1 class="welcome"><span>G</span> Gab</h1>
-      <div class="feed-container single">
-        {{#message}}
+      <h1 class="welcome"><span>G</span>{{messages.0.user.username}}</h1>
+      <div class="feed-container">
+        {{#messages}}
           <div class="feed-block">
             <div class="gab-header">
               <div class="left">
                 <img class="avatar" src="/images/avatar.png">
-                <h3 class="gab-author"><a href="/users/{{user.username}}">{{user.username}}</a></h3>
+                <h3 class="gab-author"><a href="/{{user.username}}">{{user.username}}</a></h3>
               </div>
               <div class="right">
-                <form method="POST" action="/gab/{{id}}/like" class="gab-controls">
-                 <a href="/">{{likes.length}}</a>
+                <form method="POST" action="/feed/{{id}}/like" class="gab-controls">
+                  <a href="/">{{likes.length}}</a>
                   <button type="submit" class="like"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
                 </form>
                 <form method="POST" class="gab-controls">
-                   <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
+                  <a href="/">{{likes.length}}</a>
+                  <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
                 </form>
               </div>
             </div>
             <p class="gab-message">{{content}}<br>
+            <a href="/gab/{{id}}">View Post<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></p>
             <p class="gab-date"><i class="fa fa-paper-plane" aria-hidden="true"></i>{{createdAt}}</p>
           </div>
-        {{/message}}
+        {{/messages}}
       </div>
     </div>
   </main>

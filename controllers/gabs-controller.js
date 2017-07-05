@@ -19,32 +19,44 @@ router.post('/gab', async (request, response) => {
     response.render('post', {errors: validationErrors})
   }
   else {
-    var userInfo = await models.users.findOne({
-      attributes: ['id'],
-      where: { username: request.session.username }
-    });
     await models.messages.create({
       content: request.body.message,
-      userId: userInfo.id
+      userId: request.session.userId
     });
-    response.redirect('/feed');
+    response.redirect('/');
   }
 });
 
 router.get('/gab/:id', async (request, response) => {
-  var messages = await models.messages.findOne({
-    include: [models.users],
+  var message = await models.messages.findOne({
+    include: [models.users, models.likes],
     where: { id: request.params.id } 
   });
-  response.render("gab", {username: request.session.username, messages: messages});
+  var likers = await models.likes.findAll({
+    include: [models.users],
+    where: { messageId: request.params.id }
+  })
+  var model = {
+    message: message,
+    likecount: message.likes.length,
+    likers: likers
+  }
+  response.render("gab", {username: request.session.username, message: message});
 });
 
-router.get('gab/:id/like', async (request, response) => {
-  var messages = await models.messages.findOne({
+router.post('/gab/:id/like', async (request, response) => {
+  var message = await models.messages.findOne({
     include: [models.users],
+    include: [models.likes],
     where: { id: request.params.id } 
   });
-  response.render("gab", {username: request.session.username, messages: messages});
+  // if(message[0].id)
+  // for (i = 0; )
+  // await models.messages.create({
+  //     content: request.body.message,
+  //     userId: userInfo.id
+  //   });
+  response.redirect('/feed');
 });
 
 module.exports = router;

@@ -17,6 +17,7 @@ application.engine('handlebars', handlebars());
 const authenticationController = require('./controllers/authentication-controller');
 const feedsController = require('./controllers/feeds-controller');
 const gabsController = require('./controllers/gabs-controller');
+const usersController = require('./controllers/users-controller');
 
 application.use(session({
     secret: 'gabble',
@@ -39,6 +40,7 @@ application.use(expressValidator());
 application.use(authenticationController);
 application.use(feedsController);
 application.use(gabsController);
+application.use(usersController);
 
 application.listen(port, () => {
 });

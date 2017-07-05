@@ -248,6 +248,8 @@ ul.errors i {
 
 .gab-header form {
   padding: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .gab-header .avatar {
@@ -261,9 +263,12 @@ ul.errors i {
 }
 
 .gab-header h3 {
-  color: #3B7C8B;
   display: inline-block;
   line-height: 30px;
+}
+
+.gab-header h3 a {
+  color: #558E9B;
 }
 
 .gab-header i {
@@ -277,7 +282,7 @@ ul.errors i {
 .gab-header form:last-of-type i {
   font-size: 17px;
   position: relative;
-  bottom: 1px;
+  bottom: 3px;
 }
 
 .gab-controls {
@@ -286,7 +291,11 @@ ul.errors i {
 }
 
 .gab-controls a {
-  margin: 0 2px 0 12px;
+  margin: 0 8px 0 12px;
+}
+
+.gab-header form:last-of-type a {
+  margin-right: 6px;
 }
 
 .gab-controls button {
@@ -308,15 +317,15 @@ ul.errors i {
 }
 
 .gab-controls .comment {
-  color: #3B7C8B;
+  color: #558E9B;
 }
 
 .gab-controls .comment:hover {
-  color: #8CB3BD;
+  color: #A0C1C8;
 }
 
 .gab-message {
-  padding: 10px 20px 80px;
+  padding: 10px 20px;
   font-size: .9em;
 }
 
@@ -327,10 +336,51 @@ ul.errors i {
   border-radius: 3px;
   padding: 0px 10px;
   font-size: .9em;
+  margin-top: 12px;
+}
+
+.gab-message a:hover {
+  opacity: .75;
 }
 
 .gab-message a i {
   margin-left: 6px;
+}
+
+.message-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: none;
+  margin-bottom: 40px;
+}
+
+.message-controls button {
+  flex-basis: calc(50% - 10px);
+}
+
+.message-controls button i {
+  justify-content: space-between;
+  margin-left: 6px;
+}
+
+button.view {
+  background: #79B3C1;
+  color: #FFF;
+}
+
+button.view:hover {
+  background: #79B3C1;
+  opacity: .75;
+}
+
+button.delete {
+  background: #fe6262;
+}
+
+button.delete:hover {
+  background: #fe6262;
+  opacity: .75;
 }
 
 .gab-date {
@@ -346,4 +396,17 @@ ul.errors i {
 
 .gab-date i {
   margin-right: 8px;
+}
+
+
+/*  TABLET STYLES  */
+@media (max-width: 768px) {
+  .feed-container .feed-block {
+    flex-basis: 100%;
+  }
+}
+
+
+/*  MOBILE STYLES  */
+
 }

@@ -26,49 +26,33 @@
     <div class="wrapper">
       <h1 class="welcome"><span>G</span> Recent Gabs</h1>
       <div class="feed-container">
-        <div class="feed-block">
-          <div class="gab-header">
-            <div class="left">
-              <img class="avatar" src="/images/avatar.png">
-              <h3 class="gab-author">aasche</h3>
-            </div>
-            <div class="right">
-              <form method="POST" class="gab-controls">
-                <a>5</a>
-                <button type="submit" class="like"><i class="fa fa-heart" aria-hidden="true"></i></button>
-              </form>
-              <form method="POST" class="gab-controls">
-                <a>0</a>
-                <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
-              </form>
-            </div>
-          </div>
-          <p class="gab-message">Lorem ipsum dolor sit amet, consectedstur adipisicing elit. Labore nobis incidunt sint illo adipisci mollitia qui repellendus, repudiandae.<br>
-          <a href="/gab/{{id}}">View Post<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></p>
-          <p class="gab-date"><i class="fa fa-paper-plane" aria-hidden="true"></i>8:45pm July 4, 2017</p>
-          {{!--<div class="gab-comments">
-            <p class="gab-message comments">Lorem ipsum dolor sit amet, consectedstur adipisicing elit. Labore nobis incidunt sint illo adipisci mollitia qui repellendus, repudiandae.</p>
-          </div>--}}
-        </div>
         {{#messages}}
           <div class="feed-block">
             <div class="gab-header">
               <div class="left">
                 <img class="avatar" src="/images/avatar.png">
-                <h3 class="gab-author">{{user.username}}</h3>
+                <h3 class="gab-author"><a href="/users/{{user.username}}">{{user.username}}</a></h3>
               </div>
               <div class="right">
-                <form method="POST" action="/gab/{{id}}/like" class="gab-controls">
+                <form method="POST" action="/feed/{{id}}/like" class="gab-controls">
+                  <a href="/{{id}}/likers">{{likes.length}}</a>
                   <button type="submit" class="like"><i class="fa fa-heart-o" aria-hidden="true"></i></button>
                 </form>
                 <form method="POST" class="gab-controls">
-                   <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
+                  <a href="/">{{likes.length}}</a>
+                  <button type="submit" class="comment"><i class="fa fa-comment-o" aria-hidden="true"></i></button>
                 </form>
               </div>
             </div>
-            <p class="gab-message">{{content}}<br>
-            <a href="/gab/{{id}}">View Post<i class="fa fa-angle-double-right" aria-hidden="true"></i></a></p>
-            <p class="gab-date"><i class="fa fa-paper-plane" aria-hidden="true"></i>{{createdAt}}</p>
+            <p class="gab-message">{{content}}</p>
+            <form method="POST" class="message-controls" action="feed/{{id}}/delete">
+              {{#if messageOwner}}
+                <button class="delete" type="submit">Delete Post</button>
+              {{/if}}
+                <button class="view">View Post<i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+            </form>
+            <p class="gab-date">
+              <i class="fa fa-paper-plane" aria-hidden="true"></i>{{createdAt}}</p>
           </div>
         {{/messages}}
       </div>
